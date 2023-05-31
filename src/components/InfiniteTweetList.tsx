@@ -1,4 +1,4 @@
-export const InfiniteTweetList = ({ tweets }): JSX.Element => {
-  console.log(tweets)
+export const InfiniteTweetList = (props: { tweets: unknown }): JSX.Element => {
+  console.log(props.tweets)
   return <></>
 }
