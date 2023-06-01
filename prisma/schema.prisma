@@ -19,6 +19,7 @@ model Tweet {
   user      User     @relation(fields: [userId], references: [id])
   likes     Like[]
 
+  @@unique([createdAt, id])
   @@index([userId])
 }
 
