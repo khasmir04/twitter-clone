@@ -125,8 +125,8 @@ const HeartButton = ({ likedByMe, likeCount }: HeartButtonProps) => {
       <IconHoverEffect red>
         <HeartIcon
           className={`transition-colors duration-200 ${likedByMe
-              ? 'fill-red-500'
-              : 'fill-gray-500 group-hover:fill-red-500 group-focus-visible:fill-red-500'
+            ? 'fill-red-500'
+            : 'fill-gray-500 group-hover:fill-red-500 group-focus-visible:fill-red-500'
             }`}
         />
       </IconHoverEffect>
