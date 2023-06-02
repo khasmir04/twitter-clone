@@ -25,7 +25,7 @@ const RecentTweets = (): JSX.Element => {
       tweets={tweets.data?.pages.flatMap((page) => page.tweets)}
       isError={tweets.isError}
       isLoading={tweets.isLoading}
-      hasMore={tweets.hasNextPage || false} //hasNextPage can be undefined
+      hasMore={tweets.hasNextPage}
       fetchNewTweets={tweets.fetchNextPage}
     />
   )
