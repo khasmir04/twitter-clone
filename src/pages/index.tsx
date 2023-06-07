@@ -17,7 +17,10 @@ const Home: NextPage = () => {
 
 const RecentTweets = (): JSX.Element => {
   const tweets = api.tweet.infiniteFeed.useInfiniteQuery(
-    {},
+    {
+      // TODO: Change limit depending on screen size
+      limit: 12,
+    },
     { getNextPageParam: (lastPage) => lastPage.nextCursor },
   )
   return (
