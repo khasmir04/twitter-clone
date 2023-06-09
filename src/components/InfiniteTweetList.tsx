@@ -98,7 +98,7 @@ const TweetCard = ({
             {dateTimeFormatter.format(createdAt)}
           </span>
         </div>
-        <p className="whitespace-pre-wrap">{content}test</p>
+        <p className="whitespace-pre-wrap">{content}</p>
         <HeartButton onClick={handleToggleLike} isLoading={toggleLike.isLoading} likedByMe={likedByMe} likeCount={likeCount} />
       </div>
     </li>
