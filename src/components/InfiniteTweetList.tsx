@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import InfiniteScroll from 'react-infinite-scroll-component'
 import { ProfileImage } from './ProfileImage'
 import Link from 'next/link'
@@ -52,7 +51,7 @@ export const InfiniteTweetList = ({
         dataLength={tweets.length}
         next={fetchNewTweets}
         hasMore={hasMore}
-        loader={"Loading..."}
+        loader={'Loading...'}
       >
         {tweets.map((tweet) => {
           return <TweetCard key={tweet.id} {...tweet} />
@@ -99,7 +98,12 @@ const TweetCard = ({
           </span>
         </div>
         <p className="whitespace-pre-wrap">{content}</p>
-        <HeartButton onClick={handleToggleLike} isLoading={toggleLike.isLoading} likedByMe={likedByMe} likeCount={likeCount} />
+        <HeartButton
+          onClick={handleToggleLike}
+          isLoading={toggleLike.isLoading}
+          likedByMe={likedByMe}
+          likeCount={likeCount}
+        />
       </div>
     </li>
   )
@@ -112,9 +116,22 @@ type HeartButtonProps = {
   onClick: () => void
 }
 
-const HeartButton = ({ likedByMe, likeCount, isLoading, onClick }: HeartButtonProps) => {
+const HeartButton = ({
+  likedByMe,
+  likeCount,
+  isLoading,
+  onClick,
+}: HeartButtonProps) => {
   const session = useSession()
   const HeartIcon = likedByMe ? VscHeartFilled : VscHeart
+
+  const textClasses = likedByMe
+    ? 'text-red-500'
+    : 'text-gray-500 hover:text-red-500 focus-visible:text-red-500'
+
+  const iconClasses = likedByMe
+    ? 'fill-red-500'
+    : 'fill-gray-500 group-hover:fill-red-500 group-focus-visible:fill-red-500'
 
   if (session.status !== 'authenticated')
     return (
@@ -128,17 +145,11 @@ const HeartButton = ({ likedByMe, likeCount, isLoading, onClick }: HeartButtonPr
       disabled={isLoading}
       onClick={onClick}
       className={`group ml-2 flex items-center gap-1 self-start transition-colors
-        duration-200 ${likedByMe
-          ? 'text-red-500'
-          : 'text-gray-500 hover:text-red-500 focus-visible:text-red-500'
-        }`}
+        duration-200 ${textClasses}`}
     >
       <IconHoverEffect red>
         <HeartIcon
-          className={`transition-colors duration-200 ${likedByMe
-            ? 'fill-red-500'
-            : 'fill-gray-500 group-hover:fill-red-500 group-focus-visible:fill-red-500'
-            }`}
+          className={`transition-colors duration-200 ${iconClasses}`}
         />
       </IconHoverEffect>
       <span>{likeCount}</span>
