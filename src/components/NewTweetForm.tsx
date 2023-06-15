@@ -75,8 +75,10 @@ const Form = () => {
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    createTweet.mutate({ content: inputValue })
+    if (inputValue) createTweet.mutate({ content: inputValue })
   }
+
+  const cursorClasses = inputValue.length < 1 ? 'disabled:cursor-default' : ''
 
   return (
     <form
@@ -94,7 +96,12 @@ const Form = () => {
           placeholder="What's happening?"
         />
       </div>
-      <Button className="self-end">Tweet</Button>
+      <Button
+        className={`self-end ${cursorClasses}`}
+        disabled={inputValue.length < 1}
+      >
+        Tweet
+      </Button>
     </form>
   )
 }
