@@ -28,11 +28,7 @@ export const tweetRouter = createTRPCRouter({
           whereClause:
             currentUserId == null || !onlyFollowing
               ? undefined
-              : {
-                user: {
-                  followers: { some: { id: currentUserId } },
-                },
-              },
+              : { user: { followers: { some: { id: currentUserId } } } },
         })
       },
     ),
