@@ -10,6 +10,22 @@ import {
 } from '~/server/api/trpc'
 
 export const tweetRouter = createTRPCRouter({
+  infiniteProfileFeed: publicProcedure
+    .input(
+      z.object({
+        userId: z.string(),
+        limit: z.number().optional(),
+        cursor: z.object({ id: z.string(), createdAt: z.date() }).optional(),
+      }),
+    )
+    .query(async ({ input: { limit = 10, userId, cursor }, ctx }) => {
+      return await getInfiniteTweets({
+        limit,
+        cursor,
+        ctx,
+        whereClause: { userId },
+      })
+    }),
   infiniteFeed: publicProcedure
     .input(
       z.object({
